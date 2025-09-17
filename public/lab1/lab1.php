@@ -1,2 +1,2 @@
 <?php
-echo "Test";
+echo "Hello, world!";

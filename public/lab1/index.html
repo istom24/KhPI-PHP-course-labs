@@ -1,0 +1,30 @@
+<!--7. Робота з формами:-->
+<!--● Створіть HTML-форму з полями "Ім'я" та "Прізвище".-->
+<!--● Створіть PHP-скрипт, який буде обробляти дані, отримані з форми.-->
+<!--● Перевірте, чи були отримані дані коректно (перевірка на пусті значення та тип даних).-->
+<!--● Виведіть привітання користувачу з використанням його імені та прізвища.-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student</title>
+</head>
+<body>
+<div class="wrapper">
+    <form action="process.php" method="post">
+        <h1>Contact form</h1>
+        <div class="input-box">
+            <input type="text" placeholder="First name" name="first_name" required>
+        </div>
+
+        <div class="input-box">
+            <input type="text" placeholder="Last name" name="last_name" required>
+        </div>
+        <div>
+            <button type="submit" class="btn">Send</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

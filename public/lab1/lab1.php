@@ -27,66 +27,69 @@ echo "Hello World!"; // echo - command that displays a massage
 <!--● Виведіть значення змінних на екран, використовуючи функцію echo.-->
 <!--● Виведіть тип кожної змінної, використовуючи функцію var_dump.-->
 <p><?php // без тегу не працює )
-$street = "Park Avenue";
-echo "My friend lives on $street\n";
-$house = 25;
-echo "Ніs home number is $house\n";
-$gas_bill = 145.56;
-echo "He needs to $$gas_bill for gas per month. ";
-$person_live = TRUE;
-echo "Is he living at home now(1-Yes/0-No)? $person_live";
-var_dump($person_live);
-var_dump($gas_bill);
-var_dump($house);
-var_dump($street);
-?></p>
+    $street = "Park Avenue";
+    echo "My friend lives on $street\n";
+    $house = 25;
+    echo "Ніs home number is $house\n";
+    $gas_bill = 145.56;
+    echo "He needs to $$gas_bill for gas per month. ";
+    $person_live = TRUE;
+    echo "Is he living at home now(1-Yes/0-No)? $person_live";
+    var_dump($person_live);
+    var_dump($gas_bill);
+    var_dump($house);
+    var_dump($street);
+    ?></p>
 
 <!--3. Конкатенація рядків:-->
 <!--● Створіть дві змінні з рядковими значеннями.-->
 <!--● Об'єднайте ці змінні в один рядок та виведіть результат на екран.-->
 <p><?php
-$firs_name = "Mark ";
-$last_name = " Twain";
-$name = $last_name . $firs_name; // (.) - оператор для зєднання рядкових змінних
-echo $name;
+    $firs_name = "Mark ";
+    $last_name = " Twain";
+    $name = $last_name . " " . $firs_name; // (.) - оператор для зєднання рядкових змінних
+    echo $name;;
 
-?></p>
+    ?></p>
 
 <!--4. Умовні конструкції:-->
 <!--● Створіть змінну з будь-яким числовим значенням.-->
 <!--● Реалізуйте умовну конструкцію if-else, яка перевіряє, чи є це число парним або непарним,
 і виводить відповідне повідомлення на екран.-->
 <p><?php
-$date = 2006;
-if ($date % 2 == 0) {
-    echo("Numder $date even");
-} else {
-    echo("Numder $date odd");
-}
-?></p>
+    $date = 2006;
+    if ($date % 2 == 0) {
+        echo("Numder $date even");
+    } else {
+        echo("Numder $date odd");
+    }
+    ?></p>
 <!--5. Цикли:-->
 <!--● Використовуючи цикл for, виведіть на екран числа від 1 до 10.-->
 <!--● Використовуючи цикл while, виведіть на екран числа від 10 до 1.-->
 <p><?php
-for ($i = 1; $i <= 10; $i++) {
-    echo $i . " ";
-}
-$i=10;
-while ($i<=1) {
-    echo $i .  " ";
-    $i--;
-}
-?></p>
+    for ($i = 1; $i <= 10; $i++) {
+        echo $i . " ";
+    }
+    ?>
+    <br>
+    <?php
+    $i = 10;
+    while ($i >= 1) {
+        echo $i . " ";
+        $i--;
+    }
+    ?></>
 <!--6. Масиви:-->
 <!--● Створіть асоціативний масив, що містить інформацію про студента: ім'я, прізвище, вік, спеціальність.-->
 <!--● Виведіть значення кожного елемента масиву на екран.-->
 <!--● Додайте новий елемент до масиву, який зберігає середній бал студента, і виведіть оновлений масив.-->
 <p><?php
-$student = array('first_name' => "Alice",
-                'last_name' => "Mikhailovna",
-                'age'=>"17",
-                'specialty' => "122 - computer science");
-print_r($student);
-echo $student['average_score']= "188.7";
-print_r($student)
-?></p>
+    $student = array('first_name' => "Alice",
+            'last_name' => "Mikhailovna",
+            'age' => "17",
+            'specialty' => "122 - computer science");
+    print_r($student);
+    echo $student['average_score'] = "188.7";
+    print_r($student)
+    ?></p>

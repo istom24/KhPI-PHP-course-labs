@@ -1,0 +1,33 @@
+<!--2. Створення форми реєстрації::-->
+<!--● Створіть HTML-форму з полями для введення імені-->
+<!--користувача, електронної пошти та пароля.-->
+<!--● Використовуйте метод POST для передачі даних-->
+<!--форми до PHP-скрипта.-->
+<!--● У PHP-скрипті збережіть нові дані в базу MySQL, при-->
+<!--цьому хешуйте пароль за допомогою функції md5().-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="wrapper">
+    <form action="process.php" method="post">
+        <h1>Форма</h1>
+        <div class="input-box">
+            <input type="text" placeholder="Ім`я користовуча" name="name" required>
+        </div>
+        <div class="input-box">
+            <input type="email" placeholder="Електронна пошта" name="email" required>
+        </div>
+        <div class="input-box">
+            <input type="password" placeholder="Пароль" name="password" required>
+        </div>
+        <div>
+            <button type="submit" class="btn">Увійти</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

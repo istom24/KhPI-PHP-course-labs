@@ -1,16 +1,18 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Лабораторна робота 3</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Завдання 3: $_SERVER</title>
 </head>
+<body>
+    <form action="process.php" method="POST">
+        <label for="test">Введіть щось:</label><br>
+        <input type="text" id="test" name="test" placeholder="Тестовий текст" required><br><br>
+        <button type="submit" name="action" value="post">Надіслати POST</button>
+    </form>
+
+    <h2>GET-запит:</h2>
+    <p><a href="process.php?action=get">Перейти на process.php (GET-запит)</a></p>
+</body>
 </html>
-<form action="process.php" method="post" class="form-example">
-  <div class="form-example">
-    <label for="name">Ведіть своє ім`я: </label><br>
-    <input type="text" name="name" id="name" required />
-  </div>
-    <input type="submit" name="send" value="Відправити">
-    <input type="submit" name="delete_cookie" value="Видалити cookie">
-</form>

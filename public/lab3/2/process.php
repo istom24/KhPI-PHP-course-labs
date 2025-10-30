@@ -1,57 +1,43 @@
 <?php
 session_start();
 
-$cookie_name = "name";
-
-if (!empty($_POST['name'])) {
-    setcookie($cookie_name, $_POST['name'], time() + 86400 * 7, "/");
-    header("Location: " . $_SERVER['PHP_SELF']);
-    exit;
-}
-
-if (isset($_POST['delete_cookie'])) {
-    setcookie($cookie_name, "", time() - 3600, "/");
-    header("Location: " . $_SERVER['PHP_SELF']);
-    exit;
-}
-
-$valid_username = "test";
+$valid_login = "test";
 $valid_password = "test";
 
-if (isset($_POST['login']) && isset($_POST['password']) && isset($_POST['send'])) {
-    $username = $_POST['login'];
-    $password = $_POST['password'];
-
-    if ($username === $valid_username && $password === $valid_password) {
-        $_SESSION['username'] = $username;
-        header("Location: " . $_SERVER['PHP_SELF']);
-        exit;
-    } else {
-        $error = "Неправильний логін або пароль!";
-    }
-}
-
-if (isset($_POST['delete'])) {
+if (isset($_POST['action']) && $_POST['action'] === 'logout') {
     session_unset();
     session_destroy();
-    header("Location: " . $_SERVER['PHP_SELF']);
+    echo "<h2>Ви успішно вийшли з системи</h2>";
+    echo "<a href='index.html'>Назад до форми входу</a>";
     exit;
 }
-<?php if (isset($_SESSION['username'])): ?>
-    <p>Привіт, <?php echo htmlspecialchars($_SESSION['username']); ?>!</p>
-    <form method="post">
-        <button type="submit" name="delete" class="danger">Вихід</button>
-    </form>
-<?php else: ?>
-    <form method="post">
-        <label for="login">Логін:</label>
-        <input type="text" name="login" id="login" required><br>
-        <label for="password">Пароль:</label>
-        <input type="password" name="password" id="password" required><br>
-        <button type="submit" name="send">Відправити</button>
-    </form>
-<?php endif; ?>
 
-</body>
-</html>
+if (isset($_POST['login']) && isset($_POST['password'])) {
+    $login = $_POST['login'];
+    $password = $_POST['password'];
+    
+    if ($login === $valid_login && $password === $valid_password) {
+        $_SESSION['username'] = $login;
+        echo "<h1>Вітаємо, " . htmlspecialchars($_SESSION['username']) . "!</h1>";
+        echo "<p>Ви успішно увійшли в систему.</p>";
+        echo "<form method='POST'>";
+        echo "<button type='submit' name='action' value='logout'>Вихід</button>";
+        echo "</form>";
+    } else {
+        echo "<h2>Неправильний логін або пароль!</h2>";
+        echo "<a href='index.html'>Спробувати ще раз</a>";
+    }
+    exit;
+}
+
+if (isset($_SESSION['username'])) {
+    echo "<h1>Вітаємо, " . htmlspecialchars($_SESSION['username']) . "!</h1>";
+    echo "<p>Ви вже авторизовані.</p>";
+    echo "<form method='POST'>";
+    echo "<button type='submit' name='action' value='logout'>Вихід</button>";
+    echo "</form>";
+} else {
+    echo "<h2>Ви не авторизовані</h2>";
+    echo "<a href='index.html'>Увійти</a>";
+}
 ?>

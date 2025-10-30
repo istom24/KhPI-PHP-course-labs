@@ -1,16 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Лабораторна робота 3</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма вводу</title>
 </head>
-</html>
-<form action="process.php" method="post" class="form-example">
-  <div class="form-example">
-    <label for="name">Ведіть своє ім`я: </label><br>
-    <input type="text" name="name" id="name" required />
-  </div>
-    <input type="submit" name="send" value="Відправити">
-    <input type="submit" name="delete_cookie" value="Видалити cookie">
+<body>
+<form action="process.php" method="POST">
+    <input type="text" name="name" placeholder="Ваше ім'я" required>
+    <input type="submit" value="Відправити">
 </form>
+
+<form method="POST">
+    <input type="hidden" name="action" value="delete">
+    <button name="delete_cookie">Видалити кукі</button>
+</form>
+
+</body>
+</html>
+

@@ -1,16 +1,30 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Лабораторна робота 3</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Завдання 4: Корзина покупок</title>
 </head>
-</html>
-<form action="process.php" method="post" class="form-example">
-  <div class="form-example">
-    <label for="name">Ведіть своє ім`я: </label><br>
-    <input type="text" name="name" id="name" required />
-  </div>
-    <input type="submit" name="send" value="Відправити">
-    <input type="submit" name="delete_cookie" value="Видалити cookie">
+<body>
+<h2>Завдання 4: Корзина покупок (Сесія + Cookie)</h2>
+
+<h3>Додати товар до корзини:</h3>
+<form action="process.php" method="POST">
+    <select name="product_id" required>
+        <option value="">Виберіть товар</option>
+        <option value="1">Ноутбук</option>
+        <option value="2">Телефон</option>
+        <option value="3">Навушники</option>
+        <option value="4">Клавіатура</option>
+        <option value="5">Миша</option>
+    </select>
+    <button type="submit" name="action" value="add">Додати в корзину</button>
 </form>
+
+<h3>Дії:</h3>
+<form action="process.php" method="POST">
+    <button type="submit" name="action" value="view">Переглянути корзину</button>
+    <button type="submit" name="action" value="clear">Очистити корзину</button>
+</form>
+</body>
+</html>

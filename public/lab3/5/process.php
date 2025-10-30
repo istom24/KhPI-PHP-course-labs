@@ -1,25 +1,49 @@
-<!--● Створіть форму, яка запитує ім'я користувача.-->
-<!--● Після введення імені та відправлення форми збережіть-->
-<!--це ім'я в cookie на 7 днів.-->
-<!--● Виведіть привітання з іменем користувача на сторінку-->
-<!--(якщо користувач повернеться на сторінку пізніше).-->
-<!--● Додайте кнопку для видалення cookie.-->
 <?php
-$cookie_name = "name";
+session_start();
+$timeout = 300;
 
-if (!empty($_POST['name'])) {
-    setcookie($cookie_name, $_POST['name'], time() + 86400 * 7, "/");
-    header("Location: " . $_SERVER['PHP_SELF']);
-    exit;
+if (isset($_SESSION['last_activity'])) {
+    $elapsed = time() - $_SESSION['last_activity'];
+    if ($elapsed > $timeout) {
+        session_unset();
+        session_destroy();
+        session_start();
+
+        echo "<h2>Сесія завершена через неактивність!</h2>";
+        echo "<p><strong>Час бездіяльності:</strong> " . $elapsed . " секунд (більше 5 хвилин)</p>";
+        echo "<a href='index.html'><button>Повернутися на головну</button></a>";
+        exit;
+    }
 }
 
-if (isset($_POST['delete_cookie'])) {
-    setcookie($cookie_name, "", time() - 3600, "/");
-    header("Location: " . $_SERVER['PHP_SELF']);
-    exit;
-}
+$_SESSION['last_activity'] = time();
 
-if (isset($_COOKIE[$cookie_name])) {
-    echo "Привіт, " . htmlspecialchars($_COOKIE[$cookie_name]) . "!";
+if (!isset($_SESSION['page_views'])) {
+    $_SESSION['page_views'] = 0;
+}
+$_SESSION['page_views']++;
+
+$remaining_time = $timeout - (time() - $_SESSION['last_activity']);
+
+echo "<h2>Інформація про сесію</h2>";
+
+echo "<h3>Статус сесії:</h3>";
+echo "<ul>";
+echo "<li><strong>Кількість переглядів сторінки:</strong> " . $_SESSION['page_views'] . "</li>";
+echo "<li><strong>Час останньої активності:</strong> " . date('H:i:s', $_SESSION['last_activity']) . "</li>";
+echo "<li><strong>Залишилось часу:</strong> " . $remaining_time . " секунд</li>";
+echo "</ul>";
+
+echo "<h3>Дії:</h3>";
+echo "<form action='process.php' method='POST'>";
+echo "<button type='submit'>Оновити та продовжити сесію</button>";
+echo "</form>";
+
+echo "<p><a href='index.html'><button>Назад на головну</button></a></p>";
+
+if ($remaining_time < 60) {
+    echo "<p><strong>Увага! До завершення сесії залишилось менше 1 хвилини!</strong></p>";
 }
 ?>
+
+
